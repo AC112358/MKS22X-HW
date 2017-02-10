@@ -1,0 +1,14 @@
+public class QueenBoard{
+    private int[][] posns;
+    private int solutionCount;
+    public QueenBoard(int size){
+	posns = new int[size][2];
+    }
+    
+    public boolean solve(){
+    }
+
+    public boolean countSolutions(){
+	return countSolutions(posns.length);
+    }
+}
