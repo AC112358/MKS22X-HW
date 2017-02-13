@@ -2,6 +2,7 @@ public class QueenBoard{
     private int[] posns;
     private int solutionCount;
     private boolean runSolver = false;
+    private boolean runSolve = false;
     public QueenBoard(int size){
 	posns = new int[size];
     }
@@ -14,6 +15,7 @@ public class QueenBoard{
 		}*/
 	//System.out.println();
 	posns = temp;
+	runSolve = true;
     }
 
     private boolean solveH(int index, int[] temp){
@@ -39,7 +41,7 @@ public class QueenBoard{
 	return false;
     }
 
-    public int getCount(){
+    public int getSolutionCount(){
 	if (runSolver){
 	    return solutionCount;
 	}
@@ -76,6 +78,7 @@ public class QueenBoard{
 	return total;
     }
 
+    
     private boolean queenFits(int col, int row){
 	for (int i = posns.length-1; i > col; i--){
 	    // System.out.println(i + "," + posns[i] + " vs " + col + "," + row);
@@ -91,7 +94,7 @@ public class QueenBoard{
 	String total = "";
 	for (int i = 0; i < posns.length; i++){
 	    for (int j = 0; j < posns.length; j++){
-		if (posns[j] == i){
+		if (posns[j] == i && runSolve){
 		    total += "Q";
 		}else{
 		    total += "-";
@@ -101,7 +104,7 @@ public class QueenBoard{
 	}
 	return total;
     }
- 
+
     /* public static void main(String[] args){
 	/*int[] solns = {0, 0, 2, 10, 4, 40, 92, 352, 724};
 	for (int i = 0; i < solns.length; i++){
@@ -113,11 +116,15 @@ public class QueenBoard{
 	    qb.countSolutions();
 	    System.out.println(qb.solutionCount);
 	    }*/
-	QueenBoard qb = new QueenBoard(16);
+    /*  public static void main(String[] args){
+	QueenBoard qb = new QueenBoard(10);
 		qb.solve();
 		//	System.out.println(qb.getCount());
 		//qb.countSolutions();
 	//System.out.println(qb.getCount());
+	//	qb.countSolutions();
 	System.out.println(qb);
-    }*/
+	qb.countSolutions();
+	System.out.println(qb.getSolutionCount());
+	}*/
 }
