@@ -219,9 +219,9 @@ public class KnightBoard{
 	}
 	
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 	    KnightBoard oa = new KnightBoard(60, 60);
 	    oa.solveFast();
 	    System.out.println(oa);
-	}
+	}*/
 }
