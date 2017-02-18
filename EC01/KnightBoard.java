@@ -1,12 +1,12 @@
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class OptimizedAlgorithm{
+public class KnightBoard{
     int[][] board;
     int[][][] branchBoard;
 	int[][] branchNums;
     boolean solveCalled = false;
-    public OptimizedAlgorithm(int rows, int cols){
+    public KnightBoard(int rows, int cols){
 	board = new int[rows][cols];
 	branchBoard = new int[rows][cols][];
 	branchNums = new int[rows][cols];
@@ -79,7 +79,7 @@ public class OptimizedAlgorithm{
     }
 
 
-    public void solve(){
+    public void solveFast(){
 	for (int i = 0; i < board.length; i++){
 	    for (int j = 0; j < board[0].length; j++){
 		if (solve(i, j, 1)){
@@ -90,6 +90,40 @@ public class OptimizedAlgorithm{
 	}
     }
     
+	public void solve(){
+	boolean solveH = false;
+	int index = 0;
+	while (!solveH && index < board.length*board[0].length){
+	    //  System.out.println(index/board[0].length + "," +  (index - (index/board.length)*board[0].length));
+	    solveH = solveH(index/board[0].length, index - (index/board.length)*board[0].length, 1);
+	    index++;
+	}
+	solveCalled = solveH;
+    }
+
+    private boolean solveH(int row, int col, int level){
+	board[row][col] = level;
+	if (level >= board.length*board[0].length){
+	    return true;
+	}
+	for (int i = -2; i <= 2; i++){
+	    for (int j = -2; j <= 2; j++){
+		if ((Math.abs(i) == 2 && Math.abs(j) == 1) || 
+		    (Math.abs(i) == 1 && Math.abs(j) == 2)){
+		    if (row + i >= 0 && row + i < board.length &&
+			col + j >= 0 && col + j < board[0].length &&
+			board[row+i][col+j] == 0){
+			if (solveH(row+i, col+j, level+1)){
+			    return true;
+			}
+		    }
+		}
+	    }
+	}
+	board[row][col] = 0;
+	return false;
+    }
+	
     public boolean solve(int row, int col, int level){
 		board[row][col] = level;
 		addTo(row, col, -1);
@@ -186,8 +220,8 @@ public class OptimizedAlgorithm{
 	
 	
 	public static void main(String[] args){
-	    OptimizedAlgorithm oa = new OptimizedAlgorithm(10, 10);
-	    oa.solve();
+	    KnightBoard oa = new KnightBoard(60, 60);
+	    oa.solveFast();
 	    System.out.println(oa);
 	}
 }
