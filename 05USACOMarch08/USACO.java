@@ -15,7 +15,10 @@ public class USACO{
 	    System.out.println(bronze("makelake." + num + ".in"));
 	}
     }*/
-	public static void main(String[] args) throws FileNotFoundException{
-		System.out.println(silver("ctravel.txt"));
-	}
+	/*public static void main(String[] args) throws FileNotFoundException{
+		for (int i = 1; i <= 10; i++){
+		System.out.println(silver("ctravel_files/ctravel." + i + ".in"));
+		}
+		//System.out.println(silver("ctravel_files/ctravel.1.in"));
+	}*/
 }

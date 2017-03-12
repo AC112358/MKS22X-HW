@@ -17,6 +17,7 @@ public class USACOMar08Silver7 {
 		for (int t = 1; t <= T; t++){
 			for (int r = 0; r < numPaths.length; r++){
 				for (int c = 0; c < numPaths[0].length; c++){
+					numPaths[r][c][index] = 0;
 					for (int i = -1; i <= 1; i++){
 						for (int j = -1; j <= 1; j++){
 							if (isNeighbor(r, i, c, j)){
@@ -24,11 +25,15 @@ public class USACOMar08Silver7 {
 							}
 						}
 					}
+				//	System.out.print(numPaths[r][c][index] + " ");
 				}
+			//	System.out.println();
 			}
+			//System.out.println();
 			index++;
 			index %= 2;
 		}
+		//System.out.println(numPaths[R2][C2][index]);
 		return numPaths[R2][C2][1-index];
 	}
 	

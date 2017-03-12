@@ -30,7 +30,7 @@ public class Quiz2Redux{
 		words.add(temp.get(i));
 	}
 							  }
-  public static void main(String[] args){
+  /*public static void main(String[] args){
 		System.out.println(combinations(args[0]));
-	}
+	}*/
   }
