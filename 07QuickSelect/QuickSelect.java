@@ -1,68 +1,69 @@
-public class QuickSelect{
 
-    public static int kthsmall(int[] ary, int k){
-	int start = 0;
-	int end = ary.length-1;
-	while (true){
-	    int index = part(ary, start, end);
-	    if (index > k){
-		end = index;
-	    }else if(index < k){
-		start = index;
-	    }else{
-		return ary[index];
-	    }
-       
+public class Partition {
+	
+	public static int kthsmallest(int[] ary, int k){
+		int start = 0;
+		int end = ary.length-1;
+		while (true){
+			int index = part(ary, start, end);
+			if (index > k){
+				end = index-1;
+			}
+			else if(index < k){
+				start = index+1;
+			}
+			else{
+				return ary[index];
+				 }
+			       
+			}
 	}
-	//return -1;
-    }
-    public static int part(int[] ary, int start, int end){
-	System.out.println("START: " + start + " END: " + end);
-	System.out.println(makeString(ary));
-	int random = start + (int)(Math.random()*(end-start+1));
-	int pivot = ary[random];
-	int t = ary[start];
-	ary[start] = pivot;
-	ary[random] = t;
-	int s = start+1;
-	int e = end;
-	//	System.out.println(makeString(ary));
-	while (e > s){
-	    while (e >= 0 && ary[e] > pivot){
-		e--;
-	    }
-	    while (s < ary.length && ary[s] < pivot){
-		s++;
-	    }
-	    if (s < e){
-	    int temp = ary[s];
-	    ary[s] = ary[e];
-	    ary[e] = temp;
-	    
-	   System.out.println("start: " + s + " end: " + e + "::" + makeString(ary));
-	    }
+	
+	public static int part(int[] ary, int start, int end){
+		int random = start + (int)(Math.random()*(end-start+1));
+		int s = start + 1;
+		int e = end;
+		int pivot = ary[random];
+		//System.out.println(pivot + ": " + "START: " + start + " END: " + end);
+		ary[random] = ary[start];
+		ary[start] = pivot;
+		int total = 0;
+		for (int i = start; i <= end; i++){
+			//System.out.print(ary[i] + " ");
+			if (ary[i] < pivot){
+				total++;
+			}
+		}
+		//System.out.println();
+		while (s < e){
+			while (s < ary.length && ary[s] < pivot){
+				s++;
+			}
+			while (e >= 0 && ary[e] > pivot){
+				e--;
+			}
+			if (s < e){
+				int temp = ary[s];
+				ary[s] = ary[e];
+				ary[e] = temp;
+			}
+		}
+		ary[start] = ary[start+total];
+		ary[start+total] = pivot;
+		//System.out.println(makeString(ary, start, end) + "- " + s + "," + e + " " + (start+total));
+		return start+total;
 	}
-	//ary[s] = pivot;
-	System.out.println(makeString(ary));
-	int t2 = ary[s-1];
-	ary[s-1] = ary[start];
-	ary[start] = t2;
-	System.out.println("\t" + pivot + ": " + makeString(ary));
-	//ary[s-1] = pivot;
-	return s-1;
-    }
-   
-    public static String makeString(int[] ary){
-	String total = "";
-	for (int a : ary){
-	    total += a + " ";
-	}
-	return total;
-    }
+	public static String makeString(int[] ary, int start, int end){
+		String total = "";
+		for (int i = start; i <= end; i++){
+		    total += ary[i] + " ";
+		}
+		return total;
+	    }
+	/*public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] arr = {1, 3, 2, 5, 4, 0};
+		System.out.println(kthsmallest(arr, 3));
+	}*/
 
-    public static void main(String[] args){
-	int[] arr = {1, 3, 2, 5, 4, 0};
-	System.out.println(kthsmall(arr, 5));
-	//should be 3
-    }
 }
