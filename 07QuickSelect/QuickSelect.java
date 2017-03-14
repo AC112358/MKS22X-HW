@@ -1,5 +1,5 @@
 
-public class Partition {
+public class QuickSelect {
 	
 	public static int kthsmallest(int[] ary, int k){
 		int start = 0;
@@ -63,7 +63,7 @@ public class Partition {
 	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] arr = {1, 3, 2, 5, 4, 0};
-		System.out.println(kthsmallest(arr, 3));
+		System.out.println(kthsmallest(arr, 1));
 	}*/
 
 }
