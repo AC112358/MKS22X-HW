@@ -1,20 +1,21 @@
+import java.util.Arrays;
 public class Quick{
 
     public static int quickselect(int[] ary, int k){
 	int start = 0;
 	int end = ary.length-1;
-	while (true){
+	for (int i = 0; i < ary.length; i++){
 	    int index = part(ary, start, end);
 	    if (index > k){
-		end = index;
+		end = index-1;
 	    }else if(index < k){
-		start = index;
+		start = index+1;
 	    }else{
 		return ary[index];
 	    }
        
 	}
-	//return -1;
+	return -1;
     }
     public static int part(int[] ary, int start, int end){
 	//System.out.println("START: " + start + " END: " + end);
@@ -71,9 +72,28 @@ public class Quick{
 	//int[] arr = {1, 3, 2, 5, 4, 0};
 	//System.out.println(kthsmall(arr, 5));
 	//should be 3
-	int[] ary = {2, 10, 15, 23, 0, 5};
+	/*int[] ary = {2, 10, 15, 23, 0, 5};
 	for (int i = 0; i < ary.length; i++){
 	   System.out.println(i + " " + quickselect(ary, i));
+	}*/
+	for (int x = 0; x < 100; x++){
+	int random = (int)(1000*(Math.random()));
+	int[] randomArr = new int[random];
+	int range = (int)(1000*(Math.random()));
+	for (int i = 0; i < randomArr.length; i++){
+	   randomArr[i] = (int)(range*Math.random());
+	}
+	int index = (int)(Math.random()*randomArr.length);
+	int elmt = randomArr[index];
+	int[] copyRandom = new int[randomArr.length];
+	for (int i = 0; i < randomArr.length; i++){
+	  copyRandom[i] = randomArr[i];
+	}
+	System.out.println(makeString(copyRandom, 0, copyRandom.length-1) + "\n");
+	Arrays.sort(randomArr);
+	if (randomArr[index] != quickselect(copyRandom, index)){
+ 	   System.out.println("error");
+	}
 	}
     }
 }
