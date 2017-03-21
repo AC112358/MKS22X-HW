@@ -100,20 +100,20 @@ public class Quick{
 	return total;
     }
 
-   public static void main(String[] args){
+   /*public static void main(String[] args){
 	//int[] arr = {1, 3, 2, 5, 4, 0};
 	//System.out.println(kthsmallest(arr, 5));
 	//should be 3
-	int[] ary = {2, 10, 15, 23, 23, 23, 0, 5, 5, 5, 5, 5};
-	/*for (int i = 0; i < ary.length; i++){
+	//int[] ary = {2, 10, 15, 23, 23, 23, 0, 5, 5, 5, 5, 5};
+	for (int i = 0; i < ary.length; i++){
 	   System.out.println(i + " " + quickselect(ary, i));
-	}*/
-	quicksort(ary);
-	for (int a : ary){
-		System.out.print(a + " ");
 	}
+	//quicksort(ary);
+	//for (int a : ary){
+	//	System.out.print(a + " ");
+	//}
 	//System.out.println(quickselect(ary, 0));
-	/*for (int x = 0; x < 1000; x++){
+	for (int x = 0; x < 1000; x++){
 	int random = (int)(1000*(Math.random()));
 	int[] randomArr = new int[random];
 	int range = (int)(1000*(Math.random()));
@@ -131,7 +131,12 @@ public class Quick{
 	if (randomArr[index] != quickselect(copyRandom, index)){
  	   System.out.println("error");
 	}
-	}*/
-    }
+	}
+	//double start = System.currentTimeMillis();
+	//int[] test = new int[Integer.MAX_VALUE-10];
+	//quicksort(test);
+	//double end = System.currentTimeMillis();
+	//System.out.println((end-start)/1000);
+    }*/
 }
 
