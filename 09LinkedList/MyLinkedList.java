@@ -102,36 +102,49 @@ public class MyLinkedList{
     }
 
     public void add(int index, int value){
+	//	size++;
 	if (index == 0){
+	    size++;
 	    LNode p = new LNode(start, value);
 	    start = p;
 	    return;
 	}
 	if (index == size){
-	    LNode p = getH(index-1);
-	    p.next = new LNode(null, value);
+	    size++;
+	    add(value);
+	    size--;
 	    return;
 	}
 	LNode prev = getH(index-1);
-	LNode toAdd = new LNode(prev.next.next, value);
+	LNode toAdd = new LNode(prev.next, value);
+	//	System.out.println("NEXT: " + prev.next);
 	prev.next = toAdd;
+	//	System.out.println("PREV: " + prev.data);
+	size++;
     }
 
     public int remove(int index){
 	if (index == 0){
+	    int t = start.data;
 	    start = start.next;
+	    size--;
+	    return t;
 	}
 	if (index == size-1){
 	    LNode p = getH(index-1);
+	    int t = p.data;
 	    p.next = null;
+	    size--;
+	    return t;
 	}
 	LNode prev = getH(index-1);
 	int toRemove = prev.next.data;
 	prev.next = prev.next.next;
+	size--;
 	return toRemove;
     }
 
-    public static void main(String[] args){
+    /*  public static void main(String[] args){
 	MyLinkedList list = new MyLinkedList();
 	System.out.println(list);
 	list.add(5);
@@ -143,10 +156,21 @@ public class MyLinkedList{
 	list.set(2, 90);
 	System.out.println(list);
 	list.add(0, 100);
-	list.add(3, 45);
-	list.add(1, -1);
+	System.out.println(list + " " + list.size);
+	list.add(4, 45);
 	System.out.println(list);
-	
-    }
+	list.add(1, -1);
+	for (int i = 0; i < list.size; i++){
+	    System.out.println(i + " vs " + list.indexOf(list.get(i)));
+	}
+	System.out.println(list);
+	System.out.println(list.size);
+	System.out.println(list.remove(0));
+	System.out.println(list);
+	System.out.println(list.remove(3));
+	System.out.println(list);
+	System.out.println(list.remove(1));
+	System.out.println(list);
+	}*/
 
 }
