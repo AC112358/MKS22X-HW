@@ -1,4 +1,31 @@
-public class MyLinkedList{
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+
+public class MyLinkedList implements Iterable<Integer>{
+    public Iterator<Integer> iterator(){
+	return new LIterator(start);
+    }
+    public class LIterator implements Iterator<Integer>{
+	LNode curr;
+	public LIterator(LNode temp){
+	    curr = temp;
+	}
+	public boolean hasNext(){
+	    return (curr != null && curr.next != null);
+	}
+	public Integer next(){
+	    if (!hasNext()){
+		throw new NoSuchElementException();
+	    }
+	    int temp = curr.data;
+	    curr = curr.next;
+	    return temp;
+	}
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+    }
     class LNode{
 	LNode next;
 	LNode prev;
@@ -181,7 +208,7 @@ public class MyLinkedList{
 	return toRemove;
     }
 
-    /*public static void main(String[] args){
+    public static void main(String[] args){
 	MyLinkedList list = new MyLinkedList();
 	System.out.println(list);
 	System.out.println(list.toStringBW());
@@ -219,12 +246,16 @@ public class MyLinkedList{
 	System.out.println(list.remove(1));
 	System.out.println(list);
 	System.out.println(list.toStringBW());
-
-	MyLinkedList l2 = new MyLinkedList();
+	Iterator<Integer> it = list.iterator();
+	while (it.hasNext()){
+	    System.out.println(it.next());
+	}
+	/*	MyLinkedList l2 = new MyLinkedList();
 	l2.add(5);
 	l2.remove(0);
 	System.out.println(l2);
-	System.out.println(l2.toStringBW());
+	System.out.println(l2.toStringBW());*/
+       
 	}
-    */
+   
 }
