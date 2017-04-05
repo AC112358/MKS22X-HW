@@ -12,7 +12,7 @@ public class MyLinkedList implements Iterable<Integer>{
 	    curr = temp;
 	}
 	public boolean hasNext(){
-	    return (curr != null && curr.next != null);
+	    return (curr != null);
 	}
 	public Integer next(){
 	    if (!hasNext()){
@@ -207,9 +207,9 @@ public class MyLinkedList implements Iterable<Integer>{
 	size--;
 	return toRemove;
     }
-
+    /*
     public static void main(String[] args){
-	MyLinkedList list = new MyLinkedList();
+		MyLinkedList list = new MyLinkedList();
 	System.out.println(list);
 	System.out.println(list.toStringBW());
 	list.add(5);
@@ -249,13 +249,16 @@ public class MyLinkedList implements Iterable<Integer>{
 	Iterator<Integer> it = list.iterator();
 	while (it.hasNext()){
 	    System.out.println(it.next());
-	}
-	/*	MyLinkedList l2 = new MyLinkedList();
+	    }
+		MyLinkedList l2 = new MyLinkedList();
 	l2.add(5);
 	l2.remove(0);
 	System.out.println(l2);
-	System.out.println(l2.toStringBW());*/
-       
+	System.out.println(l2.toStringBW());
+       	Iterator<Integer> it2= l2.iterator();
+	while (it2.hasNext()){
+	    System.out.println(it2.next());
+	    }
 	}
-   
+   */
 }
