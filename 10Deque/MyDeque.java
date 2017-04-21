@@ -73,17 +73,17 @@ public class MyDeque{
     }
     public String toString(){
 	String total = "";
-	for (int i = 0; i < data.length; i++){
+	/*for (int i = 0; i < data.length; i++){
 	    System.out.print(data[i] + " ");
 	}
-	System.out.println();
+	System.out.println();*/
 	for (int i = first; i < size + first; i++){
 	    total += data[i % data.length] + " ";
 	}
 	return total;
     }
-    /*
-    public static void main(String[] args){
+    
+    /*public static void main(String[] args){
 	MyDeque d = new MyDeque();
 	d.addFirst("a");
 	System.out.println("Add a to front: " + d);
@@ -101,11 +101,11 @@ public class MyDeque{
 	System.out.println("Remove first: " + d);
 	System.out.println("First element: " + d.getFirst());
 	System.out.println("Last element: " + d.getLast());
-	d.removeFirst();
+	System.out.println("\n"+d.removeFirst());
 	System.out.println("Remove first: " + d);
 	System.out.println("First element: " + d.getFirst());
 	System.out.println("Last element: " + d.getLast());
-	d.removeLast();
+	System.out.println("\n" + d.removeLast());
 	System.out.println("Remove last: " + d);
 	System.out.println("First element: " + d.getFirst());
 	System.out.println("Last element: " + d.getLast());
