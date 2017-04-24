@@ -61,8 +61,8 @@ public class KnightBoard{
         }
 	return total;
     }
-   /* public static void main(String[] args){
-	KnightBoard k = new KnightBoard(4, 4);
+   /*public static void main(String[] args){
+	KnightBoard k = new KnightBoard(5, 7);
 	k.solve();
 	System.out.println(k);
 	k = new KnightBoard(8, 8);

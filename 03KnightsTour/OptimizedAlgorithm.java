@@ -46,6 +46,8 @@ public class OptimizedAlgorithm{
 	if (solveCalled){
 	    for (int i = 0; i < board.length; i++){
 		for (int j = 0; j < board[0].length; j++){
+			int temp = board[i][j];
+			while (temp/10 == 0){}
 		    if (board[i][j]/10 == 0){
 			total += " ";
 		    }
