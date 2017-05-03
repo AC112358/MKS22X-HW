@@ -1,0 +1,6 @@
+public class MyHeap{
+    private ArrayList<String> data;
+    
+    public MyHeap(){
+    }
+}
