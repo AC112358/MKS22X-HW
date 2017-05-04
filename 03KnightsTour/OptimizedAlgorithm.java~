@@ -1,0 +1,6 @@
+public class OptimizedAlgorithm{
+    int[][] board;
+    int[][] branchBoard;
+    public OptimizedAlgorithm(int rows, int cols){
+    }
+}
