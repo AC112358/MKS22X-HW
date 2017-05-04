@@ -1,6 +1,126 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MyHeap{
     private ArrayList<String> data;
-    
+    private int minConst;
     public MyHeap(){
+    	data = new ArrayList<String>();
+    	data.add("");
+    	minConst = 1;
+    }
+    public MyHeap(boolean b){
+    	this();
+    	if (!b){
+    		minConst = -1;
+    	}
+    }
+    
+    public void add(String s){
+    	data.add(s);
+    	pushUp(data.size()-1);
+    }
+    
+    //precondition: i < data.size()
+    private void pushUp(int i){
+    	//System.out.println(data.get(i));
+    	while (i > 1 && minConst*data.get(i).compareTo(data.get(getParent(i))) > 0){
+    		//System.out.println("\t Swapping " + i + " and " + getParent(i));
+    		String temp = data.get(getParent(i));
+    		data.set(getParent(i), data.get(i));
+    		data.set(i, temp);
+    		i = getParent(i);
+    	}
+    }
+    
+    public String peek(){
+    	if (data.size() <= 1){
+    		return "";
+    	}
+    	return data.get(1);
+    }
+    
+    public String remove(){
+    	if (data.size() <= 1){
+    		return "";
+    	}
+    	if (data.size() == 2){
+    		return data.remove(1);
+    	}
+    	String temp = data.get(1);
+    	data.set(1,  data.remove(data.size()-1));
+    	pushDown(1);
+    	return temp;
+    }
+    
+    private void pushDown(int i){
+    	while ((largerChild(i) != -1) && (minConst*data.get(i).compareTo(data.get(largerChild(i))) < 0)){
+    		//System.out.println("Swapping " + data.get(i) + " and " + data.get(largerChild(i)));
+    		String temp = data.get(largerChild(i));
+    		data.set(largerChild(i), data.get(i));
+    		data.set(i, temp);
+    	}
+    	//System.out.println(data.get(oldI) + " larger child " + largerChild(oldI));
+    }
+    
+    private int largerChild(int i){
+    	if (getLeft(i) >= data.size()){
+    		if (getRight(i) >= data.size()){
+    			return -1;
+    		}
+    		return getRight(i);
+    	}
+    	else{
+    		if (getRight(i) >= data.size() || data.get(getLeft(i)).compareTo(data.get(getRight(i))) > 0){
+    			return getLeft(i);
+    		}
+    		return getRight(i);
+    	}
+    }
+    
+    private static int getParent(int i){
+    	return i/2;
+    }
+    private static int getLeft(int i){
+    	return 2*i;
+    }
+    private static int getRight(int i){
+    	return 2*i + 1;
+    }
+    
+    public static void main(String[] args){
+    	boolean b = false;
+    	String[] stuff = {"34", "23", "45", "20", "56", "12", "18", "67"};
+    	String[] sorted = new String[stuff.length];
+    	for (int i = 0; i < stuff.length; i++){
+    		sorted[i] = stuff[i];
+    	}
+    	Arrays.sort(sorted);
+    	ArrayList<String> removed = new ArrayList<String>();
+    	for (int i = 0; i <= 0; i++){
+    		b = !b;
+    		MyHeap h = new MyHeap(b);
+    		for (int j = 0; j < stuff.length; j++){
+    			h.add(stuff[j]);
+    		}
+    		System.out.println(h.data);
+    		//System.out.println(h.data.get(getLeft(1)) + " vs " + h.data.get(getRight(1)));
+    		//System.out.println(h.data.get(getParent(h.data.size()-1)));
+    		
+    		for (int j = 0; j < stuff.length; j++){
+    			System.out.println(h.remove() + " :: " + sorted[j]);
+    			System.out.println(h.data);
+    		}
+    		
+    		/*for (int j = 0; j < stuff.length; j++){
+    			removed.add(h.remove());
+    		}
+    		for (String str : removed)
+    			System.out.print(str + " ");
+    		System.out.println();
+    		for (String str : sorted)
+    			System.out.print(str + " ");*/
+    		
+    	}
     }
 }
