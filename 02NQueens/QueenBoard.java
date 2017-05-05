@@ -116,15 +116,24 @@ public class QueenBoard{
 	    qb.countSolutions();
 	    System.out.println(qb.solutionCount);
 	    }*/
-    /*  public static void main(String[] args){
-	QueenBoard qb = new QueenBoard(10);
-		qb.solve();
+    public static void main(String[] args){
+	//	QueenBoard qb = new QueenBoard(20);
+	//	qb.solve();
 		//	System.out.println(qb.getCount());
 		//qb.countSolutions();
 	//System.out.println(qb.getCount());
 	//	qb.countSolutions();
-	System.out.println(qb);
-	qb.countSolutions();
-	System.out.println(qb.getSolutionCount());
-	}*/
+	//System.out.println(qb);
+	//	qb.countSolutions();
+	//	System.out.println(qb.getSolutionCount());
+	    //QueenBoard qb = new QueenBoard(Integer.parseInt(args[0]));
+	    for (int i = 2; i < 15; i++){
+		QueenBoard qb = new QueenBoard(i);
+		double start = System.nanoTime();
+		qb.countSolutions();
+		double end = System.nanoTime();
+		System.out.println(i + ": "+ qb.getSolutionCount() + " " + (end - start));
+	    }
+   
+	}
 }

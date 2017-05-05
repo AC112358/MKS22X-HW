@@ -38,6 +38,7 @@ public class MyLinkedList implements Iterable<Integer>{
 	LNode(LNode n, int d){
 	    next = n;
 	    data = d;
+
 	}
 	LNode copy(){
 	    LNode n = new LNode();
