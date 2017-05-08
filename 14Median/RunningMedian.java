@@ -26,9 +26,11 @@ public class RunningMedian{
 	}
 	else if (minHeap.getSize() - maxHeap.getSize() > 2){
 	    maxHeap.add(minHeap.remove());
+	    median = minHeap.peek();
 	}
 	else if (maxHeap.getSize() - minHeap.getSize() > 2){
 	    minHeap.add(maxHeap.remove());
+	    median = maxHeap.peek();
 	}
     }
     
