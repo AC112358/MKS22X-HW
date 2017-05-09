@@ -1,3 +1,4 @@
+//import java.util.Arrays;
 public class RunningMedian{
     private double median;
     private MyHeap minHeap;
@@ -15,6 +16,13 @@ public class RunningMedian{
 	else{
 	    maxHeap.add(toAdd);
 	}
+	if (minHeap.getSize() - maxHeap.getSize() >= 2){
+	    maxHeap.add(minHeap.remove());
+	}
+	else if (maxHeap.getSize() - minHeap.getSize() >= 2){
+	    minHeap.add(maxHeap.remove());
+	}
+	
 	if (minHeap.getSize() == maxHeap.getSize()){
 	    median = (minHeap.peek() + maxHeap.peek())/2.;
 	}
@@ -24,14 +32,7 @@ public class RunningMedian{
 	else if (maxHeap.getSize() - minHeap.getSize() == 1){
 	    median = maxHeap.peek();
 	}
-	else if (minHeap.getSize() - maxHeap.getSize() > 2){
-	    maxHeap.add(minHeap.remove());
-	    median = minHeap.peek();
-	}
-	else if (maxHeap.getSize() - minHeap.getSize() > 2){
-	    minHeap.add(maxHeap.remove());
-	    median = maxHeap.peek();
-	}
+
     }
     
     public double getMedian(){
@@ -40,12 +41,14 @@ public class RunningMedian{
 
 
 
-    public static void main(String[] args){
+    /* public static void main(String[] args){
 	int[] list = {14, 12, 19, 20, 124, 124, 56, 23, 123, 575, 7};
+	//ArrayList<Integer> sorted = new ArrayList<Integer>();
+     
 	RunningMedian med = new RunningMedian();
 	for (int i = 0; i < list.length; i++){
 	    med.add(list[i]);
-	    System.out.println(med.getMedian());
+	    System.out.println(med.getMedian() + " " + med.maxHeap.getSize() + " " + med.minHeap.getSize());
 	}
-    }
+	}*/
 }
