@@ -5,6 +5,7 @@ public class Location implements Comparable<Location>{
     private int distToStart;
     private Location previous;
     private boolean aStar;
+    private int timeAdded;
 
     public Location(int r, int c, Location prev, int dToS, int dToG, boolean a){
 	row = r;
@@ -12,6 +13,11 @@ public class Location implements Comparable<Location>{
 	distToGoal = dToG;
 	distToStart = dToS;
 	aStar = a;
+	timeAdded = prev.timeAdded + 1;
+    }
+
+    public int initTime(){
+	timeAdded = 0;
     }
 
     public int getDistToStart(){
@@ -27,9 +33,15 @@ public class Location implements Comparable<Location>{
     
 
     public int compareTo(Location other){
+	int total = 0;
 	if (aStar){
-	    return (distToStart + distToGoal) - (other.distToStart + other.distToGoal);
+	    total = (distToStart + distToGoal) - (other.distToStart + other.distToGoal);
+	}else{
+	    total = distToGoal - other.distToGoal;
 	}
-	return distToGoal - other.distToGoal;
+	if (total != 0){
+	    return total;
+	}
+	return other.timeAdded - timeAdded; // > 0 if your time added is less (added first)
     }
 }
