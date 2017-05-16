@@ -1,10 +1,15 @@
 public class MazeSolver{
     Maze maze;
+    static final char WALL;
+    static final char VISITED;
+   
     public MazeSolver(String filename){
 	this(filename, false);
     }
     public MazeSolver(String filename, boolean animate){
 	maze = new Maze(filename, animate);
+	WALL = '#';
+	VISITED = '@';
     }
 
     public void solve(){
@@ -34,8 +39,17 @@ public class MazeSolver{
 	    node = frontier.next();
 	    for (int i = -1; i <= 1; i++){ //check node's neighbors & visit them and add them to frontier
 		for (int j = -1; j <= 1; j++){
-		    if ((i == 0 || j == 0) && i != 0){ //also check if inside board
-			
+		    if ((i == 0 || j == 0) && i != 0){ //check if one of the 4 immediate neighbors
+			int row = i + node.getRow();
+			int col = j + node.getCol();
+			if (row <= maze.maxRow() && col <= maze.maxCol()){ //check if on board
+			    char c = maze.getCharAt(row, col);
+			    if (c != WALL && c != VISITED){
+				frontier.add(new Location(row, col, node, node.getDistToStart() + 1, dist(row, col, endRow, endCol)));
+				maze.setChar(row, col, VISITED);
+				
+			    }
+			}
 		    }
 		}
 	    }

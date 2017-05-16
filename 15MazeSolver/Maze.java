@@ -30,6 +30,18 @@ public class Maze{
   public Maze(String filename){
     this(filename,false);
   }
+
+    public int maxRow(){
+	return maxRows - 1;
+    }
+
+    public int maxCol(){
+	return maxCols - 1;
+    }
+    public void setChar(int row, int col, char c){
+	maze[row][col] = c;
+    }
+    
   public Maze(String filename, boolean b){
     animate = b;
     ArrayList<char[]> lines = new ArrayList<char[]>();
