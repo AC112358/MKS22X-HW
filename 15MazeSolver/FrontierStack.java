@@ -10,4 +10,8 @@ public class FrontierStack implements Frontier{
     public Location next(){
 	return stack.pop();
     }
+
+    public boolean hasNext(){
+	return !stack.empty();
+    }
 }

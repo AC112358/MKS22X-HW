@@ -9,5 +9,9 @@ public class FrontierPriorityQueue implements Frontier{
     public Location next(){
 	return heap.remove();
     }
+
+    public boolean hasNext(){
+	return getSize() != 0;
+    }
     
 }

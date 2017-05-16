@@ -6,6 +6,7 @@ public class Location implements Comparable<Location>{
     private Location previous;
     private boolean aStar;
     private int timeAdded;
+    private static int time;
 
     public Location(int r, int c, Location prev, int dToS, int dToG, boolean a){
 	row = r;
@@ -13,11 +14,12 @@ public class Location implements Comparable<Location>{
 	distToGoal = dToG;
 	distToStart = dToS;
 	aStar = a;
-	timeAdded = prev.timeAdded + 1;
+	timeAdded = time + 1;
+	time++;
     }
 
     public int initTime(){
-	timeAdded = 0;
+        time = 0;
     }
 
     public int getDistToStart(){

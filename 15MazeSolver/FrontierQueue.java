@@ -9,4 +9,7 @@ public class FrontierQueue implements Frontier{
     public Location next(){
 	return queue.remove();
     }
+    public boolean hasNext(){
+        return queue.peek() != null;
+    }
 }
