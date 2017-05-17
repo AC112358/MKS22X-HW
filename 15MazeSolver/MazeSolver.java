@@ -1,15 +1,13 @@
 public class MazeSolver{
     Maze maze;
-    static final char WALL;
-    static final char VISITED;
+    static final char WALL = '#';
+    static final char VISITED = '@';
    
     public MazeSolver(String filename){
 	this(filename, false);
     }
     public MazeSolver(String filename, boolean animate){
 	maze = new Maze(filename, animate);
-	WALL = '#';
-	VISITED = '@';
     }
 
     public void solve(){
@@ -26,7 +24,7 @@ public class MazeSolver{
 	    aStar = true;
 	} 
 	Frontier[] f = {new FrontierStack(), new FrontierQueue(), new FrontierPriorityQueue(), new FrontierPriorityQueue()};
-        Frontier frontier = f[style];
+        Frontier frontier = f[style - 1];
 	int startRow = maze.start.getRow();
 	int startCol = maze.start.getCol();
 	int endRow = maze.end.getRow();
@@ -45,7 +43,7 @@ public class MazeSolver{
 			if (row <= maze.maxRow() && col <= maze.maxCol()){ //check if on board
 			    char c = maze.getCharAt(row, col);
 			    if (c != WALL && c != VISITED){
-				frontier.add(new Location(row, col, node, node.getDistToStart() + 1, dist(row, col, endRow, endCol)));
+				frontier.add(new Location(row, col, node, node.getDistToStart() + 1, dist(row, col, endRow, endCol), aStar));
 				maze.setChar(row, col, VISITED);
 				
 			    }
@@ -53,6 +51,12 @@ public class MazeSolver{
 		    }
 		}
 	    }
+	    // System.out.println(maze);
 	}
     }
+
+    public String toString(){
+	return maze.toString();
+    }
+
 }

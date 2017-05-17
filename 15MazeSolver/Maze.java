@@ -95,6 +95,7 @@ public class Maze{
     //you must initialize the Location start/end now!
     start = new Location(startr, startc, null, 0, 0, false);
     end = new Location(endr, endc, null, 0, 0, false);
+    initTime();
   }
 
   public String toString(){

@@ -1,3 +1,5 @@
+import java.util.Queue;
+import java.util.ArrayDeque;
 public class FrontierQueue implements Frontier{
     private Queue<Location> queue;
     public FrontierQueue(){

@@ -1,7 +1,10 @@
+import java.util.Stack;
+import java.util.ArrayDeque;
+
 public class FrontierStack implements Frontier{
     private Stack<Location> stack;
     public FrontierStack(){
-	stack = new ArrayDeque<Location>();
+	stack = new Stack<Location>();
     }
     public void add(Location l){
 	stack.add(l);

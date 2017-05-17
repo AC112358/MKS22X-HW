@@ -12,7 +12,7 @@ public class MyLocationHeap{
     }
     public MyLocationHeap(){
     	data = new ArrayList<Location>();
-    	data.add(0);
+    	data.add(null);
     	minConst = 1;
 	size = 0;
     }
@@ -24,7 +24,7 @@ public class MyLocationHeap{
     	}
     }
     
-    public void add(int s){
+    public void add(Location s){
     	data.add(s);
     	pushUp(data.size()-1);
 	size++;
@@ -42,21 +42,21 @@ public class MyLocationHeap{
     	}
     }
     
-    public int peek(){
+    public Location peek(){
     	if (data.size() <= 1){
 	    throw new NoSuchElementException();
     	}
     	return data.get(1);
     }
     
-    public int remove(){
+    public Location remove(){
     	if (data.size() <= 1){
 	    throw new NoSuchElementException();
     	}
     	if (data.size() == 2){
     		return data.remove(1);
     	}
-        int temp = data.get(1);
+        Location temp = data.get(1);
     	data.set(1,  data.remove(data.size()-1));
     	pushDown(1);
 	size--;

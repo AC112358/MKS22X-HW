@@ -18,7 +18,7 @@ public class Location implements Comparable<Location>{
 	time++;
     }
 
-    public int initTime(){
+    public void initTime(){
         time = 0;
     }
 
