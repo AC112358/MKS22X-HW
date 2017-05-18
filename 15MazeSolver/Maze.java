@@ -24,6 +24,10 @@ public class Maze{
     catch (InterruptedException e) {
     }
   }
+
+    public boolean animate(){
+	return animate;
+    }
   public void clearTerminal(){
     System.out.println(CLEAR_SCREEN+"\033[1;1H");
   }
@@ -95,7 +99,7 @@ public class Maze{
     //you must initialize the Location start/end now!
     start = new Location(startr, startc, null, 0, 0, false);
     end = new Location(endr, endc, null, 0, 0, false);
-    initTime();
+    Location.initTime();
   }
 
   public String toString(){

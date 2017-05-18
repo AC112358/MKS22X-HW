@@ -18,12 +18,15 @@ public class Location implements Comparable<Location>{
 	time++;
     }
 
-    public void initTime(){
+    public static void initTime(){
         time = 0;
     }
 
     public int getDistToStart(){
 	return distToStart;
+    }
+    public Location prev(){
+	return previous;
     }
 
     public int getRow(){
