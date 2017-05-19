@@ -50,7 +50,7 @@ public class MazeSolver{
 			    char c = maze.getCharAt(row, col);
 			    if (c == END){
 				endFound = true;
-				System.out.println(maze);
+				break;
 			    }
 			    if (!endFound && c == NEW_SPACE){
 				frontier.add(new Location(row, col, node, node.getDistToStart() + 1, dist(row, col, endRow, endCol), aStar));
@@ -65,14 +65,25 @@ public class MazeSolver{
 	    if (maze.animate()){
 		System.out.println(Maze.colorize(maze.toString()));
 		maze.clearTerminal();
-		//	maze.wait(10);
+		try{
+		    Thread.sleep(150);
+		    }
+		catch(InterruptedException e){
+		    e.printStackTrace();
+		    System.exit(0);
+		}
 	    }
 	}
+	System.out.println("done");
 	if (endFound && maze.animate()){
 	    while (node.prev() != null){
 		maze.setChar(node.getRow(), node.getCol(), VISITED);
 		maze.clearTerminal();
-		//maze.wait(10);
+			try{
+		    Thread.sleep(100);
+		    }
+		catch(InterruptedException e){
+		}
 		System.out.println(Maze.colorize(maze.toString()));
 	    }
 	}
