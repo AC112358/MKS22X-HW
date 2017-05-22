@@ -40,6 +40,7 @@ public class MazeSolver{
 	boolean endFound = false;
 	while (!endFound && frontier.hasNext()){
 	    node = frontier.next();
+	    // System.out.println(node.prev());
 	    maze.setChar(node.getRow(), node.getCol(), VISITED);
 	    for (int i = -1; i <= 1; i++){ //check node's neighbors & visit them and add them to frontier
 		for (int j = -1; j <= 1; j++){
@@ -49,9 +50,30 @@ public class MazeSolver{
 			if (row <= maze.maxRow() && col <= maze.maxCol()){ //check if on board
 			    char c = maze.getCharAt(row, col);
 			    if (c == END){
+				//System.out.println("FOUND END!!");
+				//System.exit(0);
 				endFound = true;
-				break;
-			    }
+				//	node = node.prev();
+				    //System.out.println("END NODE PREV: " + node.prev());
+				    while (node != null && node.prev() != null){
+					maze.setChar(node.getRow(), node.getCol(), ON_PATH);
+					//	System.out.println(node.prev());
+					node = node.prev();
+				
+					if (maze.animate()){
+					    	maze.clearTerminal();
+						try{
+						    Thread.sleep(100);
+						}
+						catch(InterruptedException e){
+						}
+					    System.out.println(Maze.colorize(maze.toString()));
+					}
+				    }
+				    break;
+				}
+			        
+			
 			    if (!endFound && c == NEW_SPACE){
 				frontier.add(new Location(row, col, node, node.getDistToStart() + 1, dist(row, col, endRow, endCol), aStar));
 				maze.setChar(row, col, ON_FRONTIER);
@@ -74,19 +96,8 @@ public class MazeSolver{
 		}
 	    }
 	}
-	System.out.println("done");
-	if (endFound && maze.animate()){
-	    while (node.prev() != null){
-		maze.setChar(node.getRow(), node.getCol(), VISITED);
-		maze.clearTerminal();
-			try{
-		    Thread.sleep(100);
-		    }
-		catch(InterruptedException e){
-		}
-		System.out.println(Maze.colorize(maze.toString()));
-	    }
-	}
+	//	System.out.println("done");
+	
 	
     }
 

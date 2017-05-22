@@ -11,6 +11,7 @@ public class Location implements Comparable<Location>{
     public Location(int r, int c, Location prev, int dToS, int dToG, boolean a){
 	row = r;
 	col = c;
+	previous = prev;
 	distToGoal = dToG;
 	distToStart = dToS;
 	aStar = a;
