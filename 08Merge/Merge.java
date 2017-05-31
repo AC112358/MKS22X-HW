@@ -1,6 +1,9 @@
 import java.util.Arrays;
 public class Merge{
     public static void mergesort(int[] ary){
+	if (ary.length == 0){
+	    return;
+	}
 	mergesort(ary, 0, ary.length-1);
     }
     public static void mergesort(int[] ary, int start, int end){ //[s,e]
@@ -22,8 +25,8 @@ public class Merge{
 		//printArray(ary, avg+1, end);
 		for (int i = 0; i < end-start+1; i++){
 			if (start+a <= avg && (avg+1+b > end || ary[start+a] < ary[avg+1+b])){
-				ary2[i] = ary[start+a];
-				a++;
+			    ary2[i] = ary[start+a];
+			    a++;
 			}else{
 				ary2[i] = ary[avg+1+b];
 				b++;
