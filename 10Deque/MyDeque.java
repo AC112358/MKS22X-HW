@@ -28,6 +28,8 @@ public class MyDeque{
 	    newArr[i-first] = data[i%data.length];
 	}
 	data = newArr;
+	first = 0;
+	last = size - 1;
     }
     public void addLast(String toAdd){
        if (toAdd == null){
