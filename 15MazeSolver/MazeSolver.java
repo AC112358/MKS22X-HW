@@ -63,7 +63,8 @@ public class MazeSolver{
 		}
 	    }
 	    if (maze.animate()){
-		System.out.println(Maze.colorize(maze.toString()));
+		//System.out.println(Maze.colorize(maze.toString()));
+		System.out.println(maze);
 		maze.clearTerminal();
 		try{
 		    Thread.sleep(150);
@@ -74,7 +75,7 @@ public class MazeSolver{
 		}
 	    }
 	}
-	System.out.println("done");
+	//System.out.println("done");
 	if (endFound && maze.animate()){
 	    while (node.prev() != null){
 		maze.setChar(node.getRow(), node.getCol(), VISITED);
@@ -84,7 +85,8 @@ public class MazeSolver{
 		    }
 		catch(InterruptedException e){
 		}
-		System.out.println(Maze.colorize(maze.toString()));
+			//	System.out.println(Maze.colorize(maze.toString()));
+			System.out.println(maze.toString();
 	    }
 	}
 	
@@ -92,6 +94,10 @@ public class MazeSolver{
 
     public String toString(){
 	return maze.toString();
+    }
+
+    public String toString(int i){
+	return Maze.colorize(maze.toString());
     }
 
 }
